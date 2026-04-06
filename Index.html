@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nahuel Ramirez | Coaching Profesional</title>
+  <meta name="description" content="Coaching profesional para personas que buscan claridad, confianza y acción." />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-soft: #111827;
+      --card: rgba(255,255,255,0.08);
+      --line: rgba(255,255,255,0.14);
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --accent: #22c55e;
+      --accent-2: #38bdf8;
+      --gold: #f59e0b;
+      --shadow: 0 18px 40px rgba(0,0,0,0.28);
+      --radius: 22px;
+      --max: 1150px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(245,158,11,0.16), transparent 24%),
+        linear-gradient(180deg, #020617 0%, #0f172a 42%, #111827 100%);
+      line-height: 1.55;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+    .section { padding: 82px 0; }
+    .eyebrow {
+      display: inline-flex;
+      padding: 8px 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      color: #e2e8f0;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+    }
+    .title {
+      font-size: clamp(2rem, 5vw, 4.25rem);
+      line-height: 1.05;
+      margin: 18px 0 16px;
+      letter-spacing: -0.03em;
+    }
+    .subtitle {
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      color: var(--muted);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(14px);
+      background: rgba(2,6,23,0.65);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 74px;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      font-size: 1.02rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items: center;
+      color: #e2e8f0;
+      font-size: 0.95rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), #fb7185);
+      color: white;
+      box-shadow: 0 18px 32px rgba(245,158,11,0.22);
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.12);
+      color: white;
+    }
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #16a34a, var(--accent));
+      color: white;
+      box-shadow: 0 18px 32px rgba(34,197,94,0.22);
+    }
+
+    .hero {
+      padding: 72px 0 40px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-card, .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      padding: 40px;
+    }
+
+    .hero-copy p {
+      color: var(--muted);
+      font-size: 1.07rem;
+      margin-bottom: 0;
+      max-width: 660px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .hero-side {
+      padding: 26px;
+      display: grid;
+      gap: 16px;
+      align-content: start;
+    }
+
+    .hero-photo {
+      border-radius: 18px;
+      overflow: hidden;
+      min-height: 320px;
+      background: linear-gradient(145deg, rgba(56,189,248,0.18), rgba(245,158,11,0.18));
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .mini-card {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .mini-card strong { display: block; margin-bottom: 6px; }
+    .mini-card span { color: var(--muted); font-size: 0.96rem; }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .card { padding: 28px; }
+    .card h3 { margin: 0 0 10px; font-size: 1.25rem; }
+    .card p { margin: 0; color: var(--muted); }
+
+    .section-head {
+      text-align: center;
+      max-width: 860px;
+      margin: 0 auto 34px;
+    }
+    .section-head h2 {
+      margin: 14px 0 12px;
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      letter-spacing: -0.03em;
+    }
+    .section-head p { color: var(--muted); margin: 0; }
+
+    .steps {
+      counter-reset: step;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .step {
+      padding: 24px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-2), var(--gold));
+      color: #0f172a;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .price-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .badge {
+      display: inline-flex;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(34,197,94,0.16);
+      color: #bbf7d0;
+      border: 1px solid rgba(34,197,94,0.18);
+      font-size: 0.85rem;
+      margin-bottom: 14px;
+    }
+
+    .price {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin: 12px 0;
+      letter-spacing: -0.03em;
+    }
+
+    .list {
+      padding: 0;
+      margin: 18px 0 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+    }
+
+    .list li::before {
+      content: "✓";
+      color: #86efac;
+      font-weight: 800;
+      margin-right: 10px;
+    }
+
+    .contact-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .contact-card {
+      padding: 30px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .contact-link small { color: var(--muted); display: block; }
+    .footer {
+      padding: 34px 0 52px;
+      color: #94a3b8;
+      text-align: center;
+      font-size: 0.94rem;
+    }
+
+    .note {
+      margin-top: 14px;
+      color: #cbd5e1;
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid, .grid-3, .grid-2, .steps, .contact-box {
+        grid-template-columns: 1fr;
+      }
+      .hero-copy { padding: 30px; }
+      .nav { padding: 12px 0; }
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      .cta-row { flex-direction: column; }
+      .btn { width: 100%; }
+      .section { padding: 66px 0; }
+      .hero { padding-top: 40px; }
+      .hero-copy { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="#inicio" class="brand">Nahuel Ramirez · Coaching Profesional</a>
+      <nav class="nav-links">
+        <a href="#servicio">Servicio</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#planes">Planes</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div class="hero-card hero-copy">
+          <span class="eyebrow">Coaching Profesional · Individual</span>
+          <h1 class="title">Transformá tu manera de pensar, decidir y actuar.</h1>
+          <p>
+            Un espacio de acompañamiento profesional para ganar claridad, destrabar situaciones, fortalecer tu confianza
+            y avanzar con decisiones más conscientes.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#contacto">Quiero una sesión</a>
+            <a class="btn btn-whatsapp" id="whatsappBtn" href="https://wa.me/5491134797315?text=Hola%20Nahuel%2C%20quiero%20consultarte%20por%20tu%20servicio%20de%20Coaching%20Profesional." target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn btn-secondary" id="agendaBtn" href="https://calendar.app.google/j3CsXqCwSFnvCfhx7" target="_blank" rel="noopener">Agendar cita</a>
+          </div>
+          <p class="note">Podés reemplazar luego el enlace de agenda por Calendly, Google Calendar o la plataforma que prefieras.</p>
+        </div>
+
+        <aside class="hero-card hero-side">
+          <div class="hero-photo">
+            <img src="./IMG/IMG-NR.png" alt="Nahuel Ramirez" />
+          </div>
+          <div class="mini-card">
+            <strong>Enfoque</strong>
+            <span>Escucha, claridad, reflexión y acción concreta.</span>
+          </div>
+          <div class="mini-card">
+            <strong>Sesiones</strong>
+            <span>Modalidad online · 60 minutos · Frecuencia semanal o quincenal.</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="servicio">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Qué trabajamos</span>
+          <h2>Coaching para generar cambios reales</h2>
+          <p>
+            Este servicio está pensado para personas que necesitan claridad, foco y una nueva mirada para avanzar en lo personal o profesional.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <h3>Claridad y dirección</h3>
+            <p>Ordená ideas, definí prioridades y transformá la confusión en objetivos concretos.</p>
+          </article>
+          <article class="card">
+            <h3>Confianza y liderazgo</h3>
+            <p>Fortalecé tu seguridad personal, tu forma de comunicarte y tu capacidad de decidir.</p>
+          </article>
+          <article class="card">
+            <h3>Acción con sentido</h3>
+            <p>Llevá la reflexión a pasos concretos para sostener cambios y resultados en el tiempo.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sobre-mi">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Sobre mí</span>
+          <h2>Nahuel Ramirez</h2>
+          <p>
+            Coach Profesional (Ontológico AACOP - FICOP y Ejecutivo ICF), Técnico en Informática, Consultor de Sistemas SAP, Empresarial y Ventas.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <article class="card">
+            <h3>Perfil</h3>
+            <p>
+              Acompaño procesos de cambio combinando escucha, estructura y experiencia en entornos profesionales. Mi estilo busca que cada persona pueda verse con más claridad y actuar con más coherencia.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Experiencia complementaria</h3>
+            <p>
+              Mi recorrido en tecnología, consultoría y trabajo con equipos me permite integrar una mirada humana con foco en resultados, conversaciones y aprendizaje aplicable.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proceso">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Cómo trabajamos</span>
+          <h2>Un proceso simple, profundo y enfocado</h2>
+          <p>Cada encuentro tiene intención, estructura y espacio para que aparezcan nuevas posibilidades.</p>
+        </div>
+
+        <div class="steps">
+          <article class="step">
+            <h3>Primera conversación</h3>
+            <p>Definimos qué querés trabajar, cuál es tu situación actual y qué cambio buscás generar.</p>
+          </article>
+          <article class="step">
+            <h3>Exploración</h3>
+            <p>Observamos creencias, emociones, conversaciones y patrones que hoy influyen en tus resultados.</p>
+          </article>
+          <article class="step">
+            <h3>Nuevas posibilidades</h3>
+            <p>Construimos nuevas perspectivas para ampliar tu mirada y habilitar elecciones distintas.</p>
+          </article>
+          <article class="step">
+            <h3>Acción concreta</h3>
+            <p>Convertimos el proceso en decisiones y acciones sostenibles que puedas llevar a tu vida cotidiana.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="planes">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Propuestas</span>
+          <h2>Elegí el formato que mejor acompañe tu proceso</h2>
+          <p>Podés usar estos valores como base y luego ajustarlos cuando quieras.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card price-card">
+            <span class="badge">Sesión inicial</span>
+            <h3>1 sesión</h3>
+            <div class="price">USD 50</div>
+            <p>Ideal para comenzar, ordenar una situación puntual o conocernos en una primera conversación.</p>
+            <ul class="list">
+              <li>Duración de 60 minutos</li>
+              <li>Modalidad online</li>
+              <li>Enfoque puntual</li>
+            </ul>
+          </article>
+
+          <article class="card price-card">
+            <span class="badge">Recomendado</span>
+            <h3> 5 sesiones</h3>
+            <div class="price">USD 200</div>
+            <p>Una propuesta pensada para iniciar un proceso con profundidad y sostén.</p>
+            <ul class="list">
+              <li>Trabajo progresivo</li>
+              <li>Mayor continuidad</li>
+              <li>Transformación práctica</li>
+            </ul>
+          </article>
+
+          <article class="card price-card">
+            <span class="badge">Proceso profundo</span>
+            <h3> 10 sesiones</h3>
+            <div class="price">USD 350</div>
+            <p>Para quienes quieren trabajar cambios más consistentes y sostenerlos en el tiempo.</p>
+            <ul class="list">
+              <li>Mayor profundidad</li>
+              <li>Seguimiento del proceso</li>
+              <li>Más espacio de transformación</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contacto">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Contacto</span>
+          <h2>Coordinemos tu primer paso</h2>
+          <p>Elegí el canal que te resulte más cómodo.</p>
+        </div>
+
+          <div class="contact-card">
+            <h3>Quiero una reunión para conocer mas sobre el servicio de Coaching</h3>
+            <p>
+              
+            </p>
+            <div class="contact-links">
+              <a class="contact-link" id="agendaCard" href="https://calendar.app.google/j3CsXqCwSFnvCfhx7" target="_blank" rel="noopener">
+                <div>
+                  <strong>Agendar mi primer Sesión</strong>
+                  <small>Agenda online</small>
+                </div>
+                <span>→</span>
+              </a>
+              <a class="contact-link" id="waCard" href="https://wa.me/5491134797315?text=Hola%20Nahuel%2C%20quiero%20consultarte%20por%20tu%20servicio%20de%20Coaching%20Profesional." target="_blank" rel="noopener">
+                <div>
+                  <strong>Escribirme por WhatsApp</strong>
+                  <small>Hace Clic para ponerte en contacto</small>
+                </div>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer container">
+    Coaching Profesional · Nahuel Ramirez
+  </footer>
+
+  <script>
+    // Reemplazá estos valores cuando quieras.
+    const CONFIG = {
+      agendaLink: 'https://calendar.app.google/j3CsXqCwSFnvCfhx7', // Ejemplo: 'https://calendly.com/tuusuario/sesion-inicial'
+      whatsappNumber: '5491134797315', // Formato internacional sin +
+      whatsappText: 'Hola Nahuel, quiero consultarte por tu servicio de Coaching Profesional.'
+    };
+
+    function buildWhatsApp(number, text) {
+      return `https://wa.me/${5491134797315}?text=${encodeURIComponent(text)}`;
+    }
+
+    const agendaBtn = document.getElementById('agendaBtn');
+    const agendaCard = document.getElementById('agendaCard');
+    const whatsappBtn = document.getElementById('whatsappBtn');
+    const waCard = document.getElementById('waCard');
+
+    if (CONFIG.agendaLink && CONFIG.agendaLink !== '#') {
+      agendaBtn.href = CONFIG.agendaLink;
+      agendaCard.href = CONFIG.agendaLink;
+    } else {
+      agendaBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        alert('Acá podrás pegar tu link de agenda cuando lo tengas listo.');
+      });
+      agendaCard.addEventListener('click', function (e) {
+        e.preventDefault();
+        alert('Acá podrás pegar tu link de agenda cuando lo tengas listo.');
+      });
+    }
+
+    const waLink = buildWhatsApp(CONFIG.whatsappNumber, CONFIG.whatsappText);
+    whatsappBtn.href = waLink;
+    waCard.href = waLink;
+  </script>
+</body>
+</html>
